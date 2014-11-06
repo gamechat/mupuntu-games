@@ -5,7 +5,7 @@
     "shortDescription":"Tic Tac Toe is a 2 player game",
     "longDescription": "The player are motivated to place their mables in vertical, horizontal or digonal fashion",
     "orientation": "portrait",
-    "namespace": "APPID-8495372645",
+    "namespace": "APPID-8495372641",
     "smallIcon": "/res/40x40.png",
     "mediumIcon": "/res/60x60.png",
     "largeIcon": "/res/80x80.png",
