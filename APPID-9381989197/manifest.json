@@ -1,0 +1,21 @@
+{
+        "title": "Tic Tac Toe - Colorful",
+        "gametype": "board",
+        "version" : "0.1",
+        "shortDescription":"Make Three Contagious Similar Colors",
+        "longDescription": "For a WIN, The players should try to place three similar colors in a vertical, horizontal or diagonal form.",
+        "orientation": "portrait",
+        "namespace": "APPID-9381989197",
+        "smallIcon": ".res/small.png",
+        "mediumIcon": ".res/medium.png",
+        "largeIcon": ".res/large.png",
+        "game": "index.js",
+        "css": "style.css",
+        "customLib": "library.js",
+        "libraries": ["scripts/snap.svg-min.js","scripts/ion.sound.min.js"],
+        "developer": {
+            "name" : "Daser Retnan",
+            "website": "www.retnan.com",
+            "email": "dretnan@acm.org"
+        }
+}

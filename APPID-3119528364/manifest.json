@@ -1,0 +1,21 @@
+{
+        "title": "Cross Word Puzzle",
+        "gametype": "board",
+        "version" : "0.1",
+        "shortDescription":"In this Cross Word Puzzle, the first to cross more words than the other player wins",
+        "longDescription": "This puzzle consists of a grid of squares and blanks into which words crossing vertically and horizontally are written according to clues. Be the first to cross more words to win. There is no draw in this game.",
+        "orientation": "portrait",
+        "namespace": "APPID-3119528364",
+        "smallIcon": ".res/small.png",
+        "mediumIcon": ".res/medium.png",
+        "largeIcon": ".res/large.png",
+        "game": "index.js",
+        "css": "style.css",
+        "customLib": "library.js",
+        "libraries": ["scripts/snap.svg-min.js","scripts/ion.sound.min.js","scripts/wordfind.js","scripts/wordlist.js"],
+        "developer": {
+            "name" : "Daser Retnan",
+            "website": "www.retnan.com",
+            "email": "dretnan@acm.org"
+        }
+}
