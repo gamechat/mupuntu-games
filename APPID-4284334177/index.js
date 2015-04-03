@@ -4,7 +4,7 @@
 * @Description: My Game Logic
 */
 
-GAMECHAT.GAME.createGamePlay("APPID-4284334177", {
+GAMECHAT.GAME.createGamePlay("APPID-7629393118", {
 
 	/*
 	* @method init 

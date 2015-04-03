@@ -231,6 +231,11 @@
 
 	    	// Based on current state of the model
 	    	var verdict = myLibrary.computeMoves();
+	    	
+	    	if(gameboard[position].status){
+	    	    alert("Can't play");
+	    	    return false;
+	    	}
 
 	    	if (playerId != _localUser.playerID || gameboard[position].status && 
 	    		(verdict == 'WIN' || verdict == 'DRAW')) {
@@ -290,14 +295,14 @@
 	    		
 	    		
 	    		myLibrary.flashMessage("WIN");
-	    		alert("You Win");
+	   // 		alert("You Win");
 	    		myLibrary.updateUserScores();
                 myLibrary.winTone();
                 
-                Context._resetGameBoard();
-                Context.resetBoard();
+                myLibrary._resetGameBoard();
+                myLibrary.resetBoard();
                 // mupuntuContext.triggerReset();
-                Context.setCurrentPlayerColor();
+                myLibrary.setCurrentPlayerColor();
                 
 	    	}else if(verdict == "DRAW"){
 	    	    myLibrary.flashMessage("DRAW");
@@ -446,26 +451,22 @@
 	}
 	
 	myLibrary.processChange = function(data){
-        
-            var blankboard = myLibrary._getGameBoard();
-            var diff = myLibrary.objDiff(blankboard, data[0]);
-            console.log("comparison with blank board:");
-            console.log(diff);
+	        
+	        var counter = 0;
+	        
+	        for (var prop in data[0]) {
+                if( data[0][prop].status == false){
+	                counter++;
+	            }
+	        }
             
-            if(diff.length == 0){
+            
+            if(counter == 25){
                 console.log("we have a new board");
                 _prevModel.gameboard = _.has(data[0],'gameboard') ? data[0].gameboard : data[0];
-                console.log(_prevModel);
-                
-                if(resetflag){
-                    console.log("already done the reset");
-        	    }else{
-        	        myLibrary.resetBoard(true);
-        	        myLibrary.updateUserScores();
-        	        myLibrary.setCurrentPlayerColor();
-        	        // myLibrary._resetGameBoard();
-        	        resetflag = true;
-        	    }
+                myLibrary.resetBoard();
+                myLibrary.updateUserScores(true);
+                myLibrary.setCurrentPlayerColor();
             }else{
                 console.log("new server data");
                 console.log(data);
@@ -483,18 +484,24 @@
                 
     }
     
+    myLibrary.objDiff = function(oldModel, newModel){
+
+    		var result = [], tmp;
+    		for(var key in newModel){
+    			if ( !_.isEqual(newModel[key], oldModel[key]) ) {
+    				(tmp = {})[key] = newModel[key];
+    				result.push(tmp);
+    			}
+    		}
+    		return result;
+    }
     
-    myLibrary.resetBoard = function(flag){
+    
+    myLibrary.resetBoard = function(){
 
 			// TODO, to Avoid accumulated memory leaks
             
-            var gameboard;
-            
-            if(flag){
-                gameboard = myLibrary._getGameBoard();
-            }else{
-                gameboard = _gamestateModel.get("gameboard");    
-            }
+            var gameboard = _gamestateModel.get("gameboard");    
             
             
             for(var r = 0; r < 5; r++){
@@ -593,6 +600,7 @@
 	            myLibrary.flashMessage("WIN");
 	            myLibrary.updateUserScores(true);
 	            myLibrary.winTone();
+	            alert("There is a win")
 	    	}else if(verdict == "DRAW"){
 	    	    // myLibrary.flashMessage("DRAW");
 	    	    // myLibrary.drawTone();
